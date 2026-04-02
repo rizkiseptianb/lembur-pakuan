@@ -1,0 +1,556 @@
+<!doctype html>
+<html lang="id"> 
+ <head> 
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lembur Pakuan - Wisata Budaya Subang</title>
+  <style>
+        /* INTERNAL STYLE */
+        :root {
+            --dark-bg: #1a2a2a;
+            --accent-green: #4CAF50;
+            --text-light: #f4f4f4;
+            --text-gray: #ccc;
+            --white: #ffffff;
+            --card-bg: rgba(255,255,255,0.05);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        /* Container Split Layout */
+        .container {
+            display: flex;
+            min-height: 100vh;
+            flex-wrap: wrap;
+        }
+
+        /* SISI KIRI - VISUAL HERO */
+        header#hero {
+            flex: 1 1 60%;
+background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)), 
+            url("bahan_tugas_pak_taufiq/background.png") center/cover no-repeat;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 50px;
+            min-height: 500px;
+        }
+
+        header#hero h1 {
+            font-size: clamp(3rem, 8vw, 5rem);
+            text-transform: uppercase;
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        header#hero p {
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            border-top: 2px solid var(--white);
+            display: inline-block;
+            padding-top: 10px;
+        }
+
+        .social-icons span {
+            margin-top: 40px;
+            font-size: 1.5rem;
+            margin-right: 15px;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons span:hover {
+            color: var(--accent-green);
+        }
+
+        /* SISI KANAN - CONTENT AREA */
+        main#content {
+            flex: 1 1 40%;
+            background-color: var(--dark-bg);
+            padding: 60px 40px;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        /* Navigasi */
+        nav#main-navigation {
+            margin-bottom: 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav#main-navigation a {
+            color: var(--white);
+            text-decoration: none;
+            margin-right: 15px;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+        }
+
+        nav#main-navigation a:hover,
+        nav#main-navigation a.active {
+            color: var(--accent-green);
+        }
+
+        .menu-toggle {
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .menu-toggle:hover {
+            color: var(--accent-green);
+        }
+
+        /* Section Styling */
+        section {
+            margin-bottom: 60px;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            border-left: 5px solid var(--accent-green);
+            padding-left: 15px;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--accent-green);
+        }
+
+        p {
+            margin-bottom: 20px;
+            color: var(--text-gray);
+        }
+
+        strong {
+            color: var(--white);
+        }
+
+        /* List Styling */
+        ul, ol {
+            margin-left: 20px;
+            margin-bottom: 20px;
+            color: var(--text-gray);
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        /* Table Styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: var(--card-bg);
+        }
+
+        th, td {
+            border: 1px solid #444;
+            padding: 12px;
+            text-align: left;
+            color: var(--text-gray);
+        }
+
+        thead {
+            background-color: #222;
+        }
+
+        th {
+            color: var(--white);
+        }
+
+        /* Media Elements */
+        .media-container {
+            margin-top: 30px;
+        }
+
+        .media-container img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            object-fit: cover;
+        }
+
+        /* Caption Gambar (Dipisahkan) */
+        .image-caption {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-light);
+            margin-bottom: 8px;
+            text-align: left;
+        }
+
+        /* Container untuk Gambar dan Caption */
+        .image-item {
+            margin-bottom: 40px;
+        }
+
+        /* Container Video Youtube */
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 8px;
+            margin-top: 15px;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        audio {
+            width: 100%;
+            margin-top: 10px;
+            border-radius: 5px;
+            background-color: var(--card-bg);
+            padding: 5px;
+        }
+
+        /* Card Styling */
+        .card-berita, aside {
+            background-color: var(--card-bg);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+
+        /* Buttons */
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.4s ease;
+            display: inline-block;
+            border-radius: 4px;
+        }
+
+        .btn-primary {
+            background-color: var(--accent-green);
+            color: var(--white);
+        }
+
+        .btn-outline {
+            border: 1px solid var(--accent-green);
+            color: var(--accent-green);
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+
+        /* Footer */
+        footer {
+            margin-top: 50px;
+        }
+
+        hr {
+            border: 0.5px solid #444;
+            margin-bottom: 20px;
+        }
+
+        footer p {
+            font-size: 0.8rem;
+            text-align: center;
+            color: var(--text-gray);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            main#content {
+                height: auto;
+                flex: 1 1 100%;
+                padding: 30px 20px;
+            }
+            header#hero {
+                min-height: 50vh;
+                flex: 1 1 100%;
+                padding: 30px;
+            }
+            nav#main-navigation a {
+                margin-right: 10px;
+                font-size: 0.8rem;
+            }
+            h2 {
+                font-size: 1.6rem;
+            }
+        }
+    </style> 
+ </head> 
+ <body> 
+  <div class="container"> 
+   <header id="hero"> 
+    <h1>Lembur<br>Pakuan</h1> 
+    <p>PHOTOGRAPHY | CULTURE | TRADITION</p> 
+    <div class="social-icons"> <span aria-label="Instagram">IG</span> <span aria-label="Facebook">FB</span> <span aria-label="YouTube">YT</span> 
+    </div> 
+   </header> 
+   <main id="content"> 
+    <nav id="main-navigation"> 
+     <div> <a href="#profil" class="active">PROFIL</a> <a href="#fasilitas">FASILITAS</a> <a href="#tiket">TIKET</a> 
+     </div> 
+     <div class="menu-toggle" aria-label="Toggle menu">
+       ☰ 
+     </div> 
+    </nav> 
+    <section id="profil"> 
+     <h2>Tentang Kami</h2> 
+     <article> 
+      <p> <strong>Lembur Pakuan</strong> adalah sebuah destinasi wisata edukasi budaya yang terletak di <em>Desa Sukasari, Kecamatan Dawuan, Kabupaten Subang</em>. Tempat ini merupakan kampung halaman dan proyek revitalisasi oleh Gubernur Jawa Barat Dedi Mulyadi, yang diinisiasi untuk melestarikan kearifan lokal masyarakat Sunda di tengah modernisasi yang pesat. </p> 
+      <p> Pengunjung dapat merasakan suasana pedesaan yang asri dengan spot foto estetik, taman tematik, serta jalan santai di tengah sawah hijau. Di sini, nilai-nilai keramah-tamahan dan gotong royong sangat dijunjung tinggi, dengan berbagai aktivitas yang mengedukasi tentang kehidupan pedesaan Sunda. </p> 
+     </article>
+     <style>
+     /* Garis Horizontal Putih Tipis */
+      border: none;
+    height: 1px; /* Ketebalan garis */
+    background-color: #ffffff; /* Warna putih */
+    margin: 20px 0; /* Jarak atas-bawah (opsional) */
+    opacity: 0.7; /* Agar tidak terlalu tebal (opsional) */
+     }
+     </style>
+
+     <div class="media-container">
+       <!-- Gambar 1 dengan Caption Terpisah -->
+       <div class="image-item">
+         <p class="image-caption">Suasana jalan pagi di Lembur Pakuan</p>
+         <img src="bahan_tugas_pak_taufiq/suasana-pagi-di-lembur-pakuan.png" alt="Gambar Suasana pagi di Lembur Pakuan">
+         <hr class="horizontal-divider">
+       </div>
+       
+       <!-- Gambar 2 dengan Caption Terpisah -->
+       <div class="image-item">
+         <p class="image-caption">Suasana kegiatan Bersama Masyarakat di Lembur Pakuan</p>
+         <img src="bahan_tugas_pak_taufiq/Suasana-kegiatan-bersama-masyarakat.png" alt="Gambar Kegiatan Masyarakat di Lembur Pakuan">
+         <hr class="horizontal-divider">
+       </div>
+       
+       <!-- Gambar 3 dengan Caption Terpisah -->
+       <div class="image-item">
+         <p class="image-caption">Spot Wisata Utama Bale Pamanah Rasa di Lembur Pakuan</p>
+         <img src="bahan_tugas_pak_taufiq/spot-wisata-utama-bale-pamanah-rasa.png" alt="Gambar Spot Wisata Utama Bale Pamanah Rasa">
+         <hr class="horizontal-divider">
+       </div>
+     </div> 
+    </section> 
+    <section id="fasilitas"> 
+     <h2>Fasilitas & Kegiatan</h2> 
+     <div class="card-berita"> 
+      <h3>Fasilitas Utama:</h3> 
+      <ul> 
+       <li>Area persawahan dengan spot foto estetik</li> 
+       <li>Taman Bunisora (Gapura Khas Sunda) dan jalur santai yang nyaman</li> 
+       <li>Saung khas Sunda untuk peristirahatan di Sawah</li> 
+       <li>Area untuk kegiatan bersama masyarakat (Bale Pamanah Rasa</li> 
+      </ul> 
+     </div> 
+     <aside> 
+      <h3>Rencana Perjalanan (Itinerary):</h3> 
+      <ol> 
+       <li>Kunjungan dan jelajah spot wisata di sekitar sawah</li>
+       <li>Mencoba Kegiatan Ngagondang (Menumbuk Wadah Secara Berirama Sebelum Menumbuk Padi)</li> 
+       <li>Berfoto di spot estetik dengan suasana pedesaan alami</li> 
+       <li>Menyaksikan atau berpartisipasi Kegiatan Kesenian (Tarian Khas Sunda dan Menonton Wayang Golek</li> 
+       <li>Menikmati suasana sejuk dan menenangkan pedesaan Sunda (Lari Pagi dan Bersepeda)</li> 
+      </ol> 
+     </aside> 
+    </section> 
+   
+       <style>
+       /* Container Video Responsif */
+        .video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* Rasio 16:9 */
+    height: 0;
+    overflow: hidden;
+    margin: 20px 0;
+    border-radius: 8px; /* Sudut membulat */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3); /* Shadow elegan */
+}
+
+        /* Iframe Video */
+        .video-container iframe {
+        position: absolute;
+       top: 0;
+       left: 0;
+       width: 100%;
+        height: 100%;
+        border: none;
+       }
+        </style>
+
+    <section id="audio-visual"> 
+     <h2>Eksplorasi Melalui Konten Visual</h2> 
+     <p>Simak keindahan Lembur Pakuan melalui konten visual berikut:</p> 
+ 
+      <!-- Container Video (Tempat Video Ditampilkan) -->
+      <div class="video-container">
+     <!-- Embed Code YouTube Anda (Tempel di sini) -->
+     <iframe src="https://www.youtube.com/embed/cirZbzr0osM" 
+           title="Video Lembur Pakuan" 
+           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+           allowfullscreen>
+     </iframe>
+     </div>
+ 
+      <section id="audio-visual"> 
+     <h2>Eksplorasi Suasana Melalui Konten Audio</h2> 
+      <p>Simak keindahan Lembur Pakuan melalui konten audio berikut:</p> 
+      
+      <p>Dengarkan Musik Tradisional Sunda (Kecapi Suling   ):</p>
+<audio controls class="audio-player" autoplay loop> 
+  <source src="instrumen.mp3"> 
+  
+</section> 
+
+<style>
+/* Styling untuk Container Maps */
+.map-container {
+    margin-bottom: 30px; /* Jarak antara maps dan tabel tiket */
+    border-radius: 12px; /* Melengkungkan sudut maps */
+    overflow: hidden; /* Memastikan sudut maps tidak terpotong */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); (Opsional: Tambah bayangan)
+}
+
+/* Styling untuk Tabel Harga Tiket (jika belum ada) */
+.ticket-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 8px;
+    overflow: hidden;
+}
+.ticket-table th, .ticket-table td {
+    padding: 12px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+</style>
+
+  
+     </section> 
+     
+    <section id="tiket"> 
+     <h2>Paket Tiket Masuk</h2> 
+     <table> 
+      <thead> 
+       <tr> 
+        <th rowspan="2">Kategori Paket</th> 
+        <th colspan="2" style="text-align: center;">Harga (IDR)</th> 
+       </tr> 
+       <tr> 
+        <th>Anak Anak</th> 
+        <th>Dewasa</th> 
+       </tr> 
+      </thead> 
+      <tbody> 
+       <tr> 
+        <td>Perorangan (Umum)</td> 
+        <td>Rp.Gratis</td> 
+        <td>Rp.Gratis</td> 
+       </tr> 
+       <tr> 
+        <td>Pelajar/Mahasiswa (dengan kartu)</td> 
+        <td>Rp.Gratis</td> 
+        <td>Rp.Gratis</td> 
+       </tr> 
+       <tr> 
+        <td>Paket Fullday (Family/Grup)</td> 
+        <td colspan="2" style="text-align: center;"><a href="https://www.trip.com" target="_blank" rel="noopener noreferrer" style="color: var(--accent-green);">Hubungi Admin atau cek Trip.com</a></td> 
+       </tr> 
+      </tbody> 
+      <tfoot> 
+       <tr
+        <td colspan="3"* Harga dapat berubah sewaktu-waktu, dan belum termasuk biaya parkir serta aktivitas khusus lainnya.</td> 
+       </tr>
+      </tfoot> </table>
+     <p>
+         <div class="map-container">
+<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d247.73794837950322!2d107.7226436!3d-6.5460157!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e693db24367591f%3A0xab3830e54238df99!2sLembur%20Pakuan%20Sukadaya%20Subang!5e0!3m2!1sid!2sid!4v1774064868092!5m2!1sid!2sid" 
+       width="600"
+       height="450"
+       style="border:0;"
+       allowfullscreen=""
+       loading="lazy" 
+       referrerpolicy="no-referrer-when-downgrade"
+       ></iframe>
+
+     </div>
+    </p>
+    
+<a href="https://rizkiseptianb.github.io/Form_pemesanan-lembur-pakuan/" class="btn-pesan">
+    Pesan Sekarang
+</a>
+
+<style>
+.btn-pesan {
+    display: block;
+    width: 100%;
+    padding: 16px;
+    border-radius: 30px;
+    background: #4CAF50;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    transition: 0.3s;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+.btn-pesan:hover {
+    background: #3e8e41;
+    transform: scale(1.03);
+}
+</style>
+    
+    <!-- PERTANYAAN REFLEKSI -->
+     <!-- 1. Perbedaan <div> dan <section>: 
+          - <section> digunakan untuk mengelompokkan konten yang memiliki topik tunggal dan bermakna secara mandiri (misal bagian "Deskripsi Wisata").
+          - <div> digunakan untuk pengelompokan elemen yang bersifat teknis (misal .container untuk membatasi lebar konten) tanpa makna semantik khusus.
+     -->
+     <!-- 2. Pentingnya atribut alt:
+          - Berikan deskripsi gambar bagi pengguna yang menggunakan teknologi asistif (seperti screen reader) atau ketika gambar gagal dimuat. Ini memastikan aksesibilitas bagi semua pengguna.
+     -->
+     <!-- 3. Peran <meta name="viewport">:
+          - Menyesuaikan lebar halaman dengan lebar layar perangkat pengguna (ponsel, tablet, desktop) dan mengatur skala awal tampilan, sehingga konten tidak terpotong atau terlalu kecil pada perangkat mobile.
+     -->
+    
+    </section> 
+    <footer> 
+     <hr> 
+     <p>© 2026 Lembur Pakuan Sukadaya. All rights reserved.</p> 
+    </footer> 
+   </main> 
+  </div> 
+ </body>
+</html>
